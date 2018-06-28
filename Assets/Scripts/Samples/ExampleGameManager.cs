@@ -7,6 +7,8 @@ public class ExampleGameManager : MonoBehaviour {
 
     public float restartDelay = 1f;
 
+    public GameObject completeLevelUI;
+
     // TODO: https://www.youtube.com/watch?v=Iv7A8TzreY4&index=10&list=PLPV2KyIb3jR5QFsefuO2RlAgWEz6EvVi6
 
     public void EndGame()
@@ -22,6 +24,7 @@ public class ExampleGameManager : MonoBehaviour {
     public void CompleteLevel()
     {
         Debug.Log("Level WON!");
+        completeLevelUI.SetActive(true);
         Invoke("Restart", restartDelay);
     }
 
