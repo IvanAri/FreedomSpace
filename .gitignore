@@ -1,0 +1,16 @@
+/Scenes/Level01/*.exr
+/Materials/*.mat
+/*.meta
+/Fonts/*.meta
+/Materials/*.meta
+/Scenes/*.meta
+/Scenes/Level01/*.meta
+/Scripts/*.meta
+/Scripts/Controls/*.meta
+/Scripts/Samples/*.meta
+/Simple objects/*.meta
+/Materials/*.physicMaterial
+/Simple objects/*.prefab
+/Fonts/*.ttf
+/Scenes/*.unity
+/Scenes/Level01/*.asset
