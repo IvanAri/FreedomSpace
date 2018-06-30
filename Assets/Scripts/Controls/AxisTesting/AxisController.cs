@@ -14,6 +14,11 @@ public class AxisController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        if (Normalize())
+        {
+            return;
+        }
+
         float tiltAroundZ = 0;
         float tiltAroundY = 0;
 
@@ -42,6 +47,21 @@ public class AxisController : MonoBehaviour {
         //And then we would call something like RotateAxis
         RotateAxis(tiltAroundZ, tiltAroundY);
 
+
+    }
+
+    bool Normalize()
+    {
+
+        if (Input.GetKeyDown("n"))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
     }
 
