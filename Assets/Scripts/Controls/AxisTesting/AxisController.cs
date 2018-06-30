@@ -55,7 +55,16 @@ public class AxisController : MonoBehaviour {
 
         if (Input.GetKeyDown("n"))
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            float zEulerAngle = transform.rotation.eulerAngles.z;
+            float yEulerAngle = transform.rotation.eulerAngles.y;
+            if (zEulerAngle <= 90 && zEulerAngle >=-90)
+            {
+                transform.rotation = Quaternion.Euler(0, yEulerAngle, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, yEulerAngle, 180);
+            }
             return true;
         }
         else
