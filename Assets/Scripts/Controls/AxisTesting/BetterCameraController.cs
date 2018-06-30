@@ -44,27 +44,34 @@ public class BetterCameraController : MonoBehaviour {
             cameraDisabled = true;
         }
 
-        // Scrolling input for zoom in and out
-        if(Input.GetAxis("Mouse ScrollWheel") != 0f)
-        {
-            float scrollAmount = Input.GetAxis("Mouse ScrollWheel") * scrollSensitivity * Time.deltaTime;
-
-            //Makes camera zoom faster
-            scrollAmount *= (cameraDistance * 0.3f);
-
-            cameraDistance += scrollAmount * -1f;
-
-            cameraDistance = Mathf.Clamp(cameraDistance, 1.5f, 100f);
-        }
-
         // Actuall camera rig transformation
         Quaternion QT = Quaternion.Euler(localRotation.y, localRotation.x, 0);
         xFormParent.rotation = Quaternion.Lerp(xFormParent.rotation, QT, Time.deltaTime * OrbitDampening);
 
-        if(xFormCamera.localPosition.z != cameraDistance * -1f)
-        {
-            xFormCamera.localPosition = new Vector3(0f, 0f, Mathf.Lerp(xFormCamera.localPosition.z, cameraDistance * -1f, Time.deltaTime * scrollDampening));
-        }
 
+        // Scrolling input for zoom in and out
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+        {
+            float scrollAmount = Input.GetAxis("Mouse ScrollWheel") * scrollSensitivity * Time.deltaTime;
+            float newCameraVecLength = transform.localPosition.magnitude;
+
+            newCameraVecLength -= scrollAmount;
+            newCameraVecLength = Mathf.Clamp(newCameraVecLength, 1.5f, 100f);
+
+            Zoom(newCameraVecLength);
+        }
 	}
+
+    void Zoom(float newVecLength)
+    {
+        // Don't forget that localPosigion.magnitude must not be equal to zero 0
+        if (xFormCamera.localPosition.magnitude != newVecLength)
+        {
+
+            float coef = newVecLength / xFormCamera.localPosition.magnitude;
+            coef = Mathf.Lerp(1f, coef, Time.deltaTime * scrollSensitivity);
+            Vector3 oldVector = xFormCamera.localPosition;
+            xFormCamera.localPosition = oldVector * coef;
+        }
+    }
 }
