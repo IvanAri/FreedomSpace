@@ -12,6 +12,8 @@ public class BetterCameraController : MonoBehaviour {
     public float scrollSensitivity = 300f;
     public float OrbitDampening = 10f;
     public float scrollDampening = 6f;
+    public float minClipDistance = 1000f;
+    public float maxClipDistance = 5000f;
 
     public bool cameraDisabled = true;
 
@@ -56,7 +58,7 @@ public class BetterCameraController : MonoBehaviour {
             float newCameraVecLength = transform.localPosition.magnitude;
 
             newCameraVecLength -= scrollAmount;
-            newCameraVecLength = Mathf.Clamp(newCameraVecLength, 1.5f, 100f);
+            newCameraVecLength = Mathf.Clamp(newCameraVecLength, minClipDistance, maxClipDistance);
 
             Zoom(newCameraVecLength);
         }
@@ -67,11 +69,8 @@ public class BetterCameraController : MonoBehaviour {
         // Don't forget that localPosigion.magnitude must not be equal to zero 0
         if (xFormCamera.localPosition.magnitude != newVecLength)
         {
-
             float coef = newVecLength / xFormCamera.localPosition.magnitude;
-            coef = Mathf.Lerp(1f, coef, Time.deltaTime * scrollSensitivity);
-            Vector3 oldVector = xFormCamera.localPosition;
-            xFormCamera.localPosition = oldVector * coef;
+            xFormCamera.localPosition = Vector3.Lerp(xFormCamera.localPosition, xFormCamera.localPosition * coef, Time.deltaTime * scrollSensitivity);
         }
     }
 }

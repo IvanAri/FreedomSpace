@@ -19,17 +19,22 @@ public class AxisController : MonoBehaviour {
             return;
         }
 
-        float tiltAroundZ = 0;
-        float tiltAroundY = 0;
-
-        if (Input.GetKey("s"))
+        if (AlignWithMainAxis())
         {
-            tiltAroundZ += tiltAngle;
+            return;
         }
+
+        float tiltAroundX = 0;
+        float tiltAroundY = 0;
 
         if (Input.GetKey("w"))
         {
-            tiltAroundZ -= tiltAngle;
+            tiltAroundX += tiltAngle;
+        }
+
+        if (Input.GetKey("s"))
+        {
+            tiltAroundX -= tiltAngle;
         }
 
         if (Input.GetKey("d"))
@@ -45,7 +50,7 @@ public class AxisController : MonoBehaviour {
         //Here we are gonna to look for an imput
 
         //And then we would call something like RotateAxis
-        RotateAxis(tiltAroundZ, tiltAroundY);
+        RotateAxis(tiltAroundX, tiltAroundY);
 
 
     }
@@ -53,17 +58,17 @@ public class AxisController : MonoBehaviour {
     bool Normalize()
     {
 
-        if (Input.GetKeyDown("n"))
+        if (false)//(Input.GetKeyDown("n")  && !Input.GetKeyDown(KeyCode.LeftShift))
         {
-            float zEulerAngle = transform.rotation.eulerAngles.z;
+            float xEulerAngle = transform.rotation.eulerAngles.x;
             float yEulerAngle = transform.rotation.eulerAngles.y;
-            if (zEulerAngle <= 90 && zEulerAngle >=-90)
+            if (xEulerAngle <= 90 && xEulerAngle >=-90)
             {
                 transform.rotation = Quaternion.Euler(0, yEulerAngle, 0);
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, yEulerAngle, 180);
+                transform.rotation = Quaternion.Euler(0, yEulerAngle, 0);
             }
             return true;
         }
@@ -74,17 +79,45 @@ public class AxisController : MonoBehaviour {
 
     }
 
-    void RotateAxis (float tiltZ, float tiltY)
+    bool AlignWithMainAxis()
     {
-        if(tiltZ == 0f && tiltY == 0f)
+        if(Input.GetKeyDown("n")) //&& Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("Left shift pressed");
+
+            float xEulerAngle = mainAxis.rotation.eulerAngles.x;
+            float yEulerAngle = mainAxis.rotation.eulerAngles.y;
+            transform.rotation = Quaternion.Euler(xEulerAngle, yEulerAngle, 0);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void RotateAxis (float tiltX, float tiltY)
+    {
+        if(tiltX == 0f && tiltY == 0f)
         {
             return;
         }
 
         Vector3 previousAngles = transform.rotation.eulerAngles;
 
-        Quaternion target = Quaternion.Euler(0, tiltY + previousAngles.y, tiltZ + previousAngles.z);
+        float xQTrotation = tiltX + previousAngles.x;
+        float yQTrotation = tiltY + previousAngles.y;
+
+        // xQTrotation = Mathf.Clamp(xQTrotation, 0f, 180f);
+        // i_belekhov figure out how to clamp rotation right. And rework this controller;
+
+        Quaternion target = Quaternion.Euler(xQTrotation, yQTrotation, 0);
         transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
 
+    }
+
+    void LateUpdate()
+    {
+        transform.position = mainAxis.position;
     }
 }
