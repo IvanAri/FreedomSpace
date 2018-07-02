@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum COMMAND
+{
+    DoNothing = 0,
+}
+
 public class InputController : MonoBehaviour {
 
 	// Use this for initialization
@@ -13,4 +18,10 @@ public class InputController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    // Method that will exec the command
+    bool Execute(List<COMMAND> commandsList)
+    {   
+        return true;
+    }
 }
