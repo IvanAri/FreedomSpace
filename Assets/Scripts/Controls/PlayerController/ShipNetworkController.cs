@@ -6,6 +6,7 @@ public static class Constants
     public const string PREFAB_AXIS = "Prefabs/NavAxis";
     public const float MAX_SPEED = 5f;
     public const float CHANGE_SPEED = 0.1f;
+
 }
 
 
@@ -33,8 +34,8 @@ public class ShipNetworkController : NetworkBehaviour
     {
         if (!isLocalPlayer)
             return;
-        handleInput();
-        transform.position += transform.forward *  currentSpeed * Time.deltaTime;
+        MoveShip();
+
     }
 
     // Update is called once per frame
@@ -42,7 +43,13 @@ public class ShipNetworkController : NetworkBehaviour
     {
         if (!isLocalPlayer)
             return;
+        // Maybe we should think about making moving and rotating nearly simultaneous
         transform.rotation = Quaternion.Slerp(transform.rotation, navAxis.rotation, Time.deltaTime * rotationSpeed);
+    }
+
+    void MoveShip()
+    {
+        transform.position += transform.forward * currentSpeed * Time.deltaTime;
     }
 
     private void OnDestroy()
@@ -50,18 +57,5 @@ public class ShipNetworkController : NetworkBehaviour
         Destroy(axisObj);
         axisObj = null;
         navAxis = null;
-    }
-
-    void handleInput()
-    {
-        if (Input.GetKey("r"))
-        {
-            currentSpeed = Mathf.Min(Constants.MAX_SPEED, currentSpeed + Constants.CHANGE_SPEED);
-        }
-
-        if (Input.GetKey("f"))
-        {
-            currentSpeed = Mathf.Max(0f, currentSpeed - Constants.CHANGE_SPEED);
-        }
     }
 }
