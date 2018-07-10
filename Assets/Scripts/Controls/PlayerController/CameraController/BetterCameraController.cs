@@ -40,7 +40,7 @@ public class BetterCameraController : MonoBehaviour {
 
 
                 // Clamp the rotation
-                // localRotation.y = Mathf.Clamp(localRotation.y, -90f, 90f);
+                localRotation.y = Mathf.Clamp(localRotation.y, -180f, 0f);
             }
 
             cameraDisabled = true;

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4613653923333250}
   - component: {fileID: 198975734582562622}
   - component: {fileID: 199497550283584110}
+  - component: {fileID: 114136676534488090}
   m_Layer: 0
   m_Name: EngineExhaustLB
   m_TagString: Untagged
@@ -38,6 +39,7 @@ GameObject:
   - component: {fileID: 4996108138481964}
   - component: {fileID: 198296802471861152}
   - component: {fileID: 199303066633166638}
+  - component: {fileID: 114861978072022314}
   m_Layer: 0
   m_Name: EngineExhaustRB
   m_TagString: Untagged
@@ -55,6 +57,7 @@ GameObject:
   - component: {fileID: 4524525639658870}
   - component: {fileID: 198293980593273036}
   - component: {fileID: 199507242835805664}
+  - component: {fileID: 114033409300088670}
   m_Layer: 0
   m_Name: EngineExhaustRT
   m_TagString: Untagged
@@ -91,6 +94,7 @@ GameObject:
   - component: {fileID: 4303383673238004}
   - component: {fileID: 198364691978994410}
   - component: {fileID: 199835671552889220}
+  - component: {fileID: 114462533351613340}
   m_Layer: 0
   m_Name: EngineExhaustLT
   m_TagString: Untagged
@@ -128,6 +132,7 @@ GameObject:
   - component: {fileID: 114548229884468682}
   - component: {fileID: 114316065635295282}
   - component: {fileID: 114889705880319102}
+  - component: {fileID: 114659555303979254}
   m_Layer: 0
   m_Name: SF_Corvette-F3
   m_TagString: Untagged
@@ -332,6 +337,17 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1302699710450446}
   m_Enabled: 1
+--- !u!114 &114033409300088670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1298196489878636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137bed8437640b74a932d5c3c1f9d9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114134076614875406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -350,6 +366,17 @@ MonoBehaviour:
   minClipDistance: 10
   maxClipDistance: 100
   cameraDisabled: 1
+--- !u!114 &114136676534488090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282924624219256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137bed8437640b74a932d5c3c1f9d9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114316065635295282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -365,6 +392,17 @@ MonoBehaviour:
   navAxis: {fileID: 0}
   rotationSpeed: 0.2
   currentSpeed: 0
+--- !u!114 &114462533351613340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1373522302242912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137bed8437640b74a932d5c3c1f9d9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114548229884468682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -386,6 +424,19 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114659555303979254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775364433218380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1428e4bb80d4dcd42a08646e283ec55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentShipSpeed: 0
+  currentShipAcceleration: 0
 --- !u!114 &114693057171164298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -418,6 +469,17 @@ MonoBehaviour:
     i15: 134
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114861978072022314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1290289862758430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137bed8437640b74a932d5c3c1f9d9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114889705880319102
 MonoBehaviour:
   m_ObjectHideFlags: 1
