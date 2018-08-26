@@ -6,7 +6,8 @@ public class LookAtTarget : MonoBehaviour {
 
 
     public Transform target = null;
-    public float rotationMultiplier = 2.0f;
+    public Transform center = null;
+    public float lookAtRotationSpeed = 2.0f;
     public bool extendedLogging = false;
     Vector3 targetPoint;
     Quaternion targetRotation;
@@ -15,7 +16,6 @@ public class LookAtTarget : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
         // Unity built-in
         CustomLookAt();
 
@@ -27,7 +27,7 @@ public class LookAtTarget : MonoBehaviour {
 
             targetPoint = new Vector3(target.position.x, transform.position.y, target.position.z) - transform.position;
             targetRotation = Quaternion.LookRotation(targetPoint, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationMultiplier);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * lookAtRotationSpeed);
 
         }
         else if(extendedLogging)
@@ -35,6 +35,7 @@ public class LookAtTarget : MonoBehaviour {
             Debug.Log("No target to look at");
         }
     }
+
 
     // Method to provide targets
     public void ReceiveTarget(Transform newTarget)
